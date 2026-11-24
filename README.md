@@ -90,4 +90,4 @@ Las cifras de productos, horarios y clientes son una lectura preliminar sobre el
 
 ## 👤 Autor
 
-*Completar con nombre y apellido del autor.*
+*Carlos Ascanio*
