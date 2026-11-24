@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Café Insights · Rentabilidad esperada por café</title>
+  <meta name="description" content="Análisis predictivo de rentabilidad para el encargado de compras de una cafetería: qué café priorizar el próximo mes, con Random Forest y una regresión lineal de referencia.">
+  <meta name="theme-color" content="#0d0b0a">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d0b0a'/%3E%3Cellipse cx='16' cy='16' rx='6.5' ry='10' transform='rotate(35 16 16)' fill='%23c58a55'/%3E%3Cpath d='M11 22c3-2 2.5-5 4-7.5s3-3.5 5.5-5.5' stroke='%230d0b0a' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="saltar" href="#resumen">Saltar al contenido</a>
+
+  <!-- Fondo: fotografía del interior tratada con velo, viñeta y grano -->
+  <div class="escena" id="escena" aria-hidden="true">
+    <div class="escena__foto"></div>
+    <div class="escena__velo"></div>
+    <div class="escena__grano"></div>
+  </div>
+  <div class="progreso" id="progress" aria-hidden="true"></div>
+
+  <header class="cabecera" id="cabecera">
+    <div class="contenedor cabecera__fila">
+      <a class="marca" href="#resumen" aria-label="Café Insights, inicio">
+        <svg class="marca__grano" viewBox="0 0 32 32" aria-hidden="true">
+          <ellipse cx="16" cy="16" rx="8" ry="12.5" transform="rotate(35 16 16)"/>
+          <path d="M10 24c3.6-2.6 3-6 4.6-8.8s3.4-4 6.4-6.4"/>
+        </svg>
+        <span class="marca__texto">Café Insights<small>Rentabilidad · Etapa 2</small></span>
+      </a>
+      <nav class="menu" id="nav" aria-label="Secciones">
+        <a href="#resumen">Resumen</a>
+        <a href="#problema">Contexto</a>
+        <a href="#metodologia">Metodología</a>
+        <a href="#metricas">Modelo</a>
+        <a href="#modelos">Comparación</a>
+        <a href="#prediccion">Predicción</a>
+        <a href="#ranking">Ranking</a>
+        <a href="#conclusiones">Conclusiones</a>
+      </nav>
+      <button class="menu-boton" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Abrir menú">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- 01 · Resumen ejecutivo -->
+    <section class="portada" id="resumen" data-spy>
+      <div class="contenedor portada__grid">
+        <div class="portada__texto reveal">
+          <p class="rotulo">01 · Resumen ejecutivo</p>
+          <h1>¿Qué café será el más rentable <em>el próximo mes?</em></h1>
+          <p class="portada__bajada" id="heroLead"></p>
+          <ul class="sellos" id="heroTags"></ul>
+        </div>
+
+        <article class="plato reveal" aria-label="Café más rentable esperado">
+          <p class="plato__rotulo">Café más rentable esperado</p>
+          <h2 class="plato__nombre" id="heroName">—</h2>
+          <p class="plato__valor"><span id="heroValue">—</span><small>u. m. estimadas · próximos 30 días</small></p>
+          <dl class="datos" id="heroDatos"></dl>
+          <p class="plato__modelo" id="heroModelo"></p>
+        </article>
+      </div>
+
+      <div class="contenedor portada__pie">
+        <aside class="recomendacion reveal" id="recomendacion" aria-label="Recomendación para el encargado de compras"></aside>
+        <div class="kpis" id="kpiGrid" aria-label="Indicadores principales"></div>
+      </div>
+    </section>
+
+    <!-- 02 · Problema identificado en la Etapa 1 -->
+    <section class="seccion" id="problema" data-spy>
+      <div class="contenedor marco">
+        <header class="cabeza reveal">
+          <p class="num">02</p>
+          <h2>Problema identificado en la Etapa 1</h2>
+          <p class="bajada">El diagnóstico concluyó que el principal problema de datos es una <strong>captura no estandarizada</strong>, y que las decisiones parecen apoyarse en la intuición más que en datos. La propuesta fue abrir un área de analítica comercial una vez ordenada la captura.</p>
+        </header>
+        <div class="cuerpo">
+          <ol class="evidencias">
+            <li class="reveal"><span class="evidencias__cifra">41</span><div><h3>Dos capturas unidas</h3><p>El segundo bloque (262 filas) reinicia la cronología y repite 41 días ya registrados en el primero.</p></div></li>
+            <li class="reveal"><span class="evidencias__cifra">182</span><div><h3>Clientes sin identificar</h3><p>Pagos con tarjeta sin ID, todos en el segundo bloque.</p></div></li>
+            <li class="reveal"><span class="evidencias__cifra">34</span><div><h3>Sin catálogo ni ID de venta</h3><p>34 etiquetas de producto (33 al normalizar) y 16 duplicados imposibles de validar.</p></div></li>
+            <li class="reveal"><span class="evidencias__cifra">4</span><div><h3>Precios por períodos</h3><p>Cada producto tiene cuatro precios consecutivos, sin una lista que los respalde.</p></div></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 · Mejoras realizadas en la Etapa 2 -->
+    <section class="seccion seccion--tono" id="mejoras" data-spy>
+      <div class="contenedor marco">
+        <header class="cabeza reveal">
+          <p class="num">03</p>
+          <h2>Mejoras realizadas en la Etapa 2</h2>
+          <p class="bajada">De describir lo ocurrido a anticipar lo que viene, sin perder la base de análisis ni las decisiones de la Etapa 1.</p>
+        </header>
+        <div class="cuerpo">
+          <ol class="linea-tiempo">
+            <li class="reveal"><h3>Misma base, nuevo objetivo</h3><p>Se reutiliza el bloque A con pagos con tarjeta de la Etapa 1 y se define una variable objetivo de rentabilidad.</p></li>
+            <li class="reveal"><h3>Modelo oficial: Random Forest</h3><p><code>RandomForestRegressor</code> optimizado con <code>GridSearchCV</code> y validación cruzada temporal.</p></li>
+            <li class="reveal"><h3>Evaluación honesta</h3><p>Partición cronológica con separación de 30 días y comparación contra un modelo base que repite el mes anterior.</p></li>
+            <li class="reveal"><h3>Comparación con un modelo lineal</h3><p>Una regresión lineal actúa como referencia para validar que el Random Forest es la mejor alternativa.</p></li>
+            <li class="reveal"><h3>Modelo reutilizable</h3><p>Modelo y encoder exportados con funciones para cargarlos y predecir con datos nuevos.</p></li>
+            <li class="reveal"><h3>Entrega al usuario</h3><p>Esta aplicación presenta el resultado para la decisión de abastecimiento.</p></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 · Usuario objetivo -->
+    <section class="seccion" id="usuario" data-spy>
+      <div class="contenedor marco">
+        <header class="cabeza reveal">
+          <p class="num">04</p>
+          <h2>Usuario objetivo</h2>
+          <p class="bajada">Encargado de compras y abastecimiento de la cafetería.</p>
+        </header>
+        <div class="cuerpo">
+          <div class="panel panel--texto reveal">
+            <p>Decide qué cafés priorizar al abastecerse. Necesita apoyar esa decisión en el historial de ventas y no solo en su experiencia.</p>
+            <ul class="lista-simple">
+              <li><strong>Decisión que apoya</strong> Qué café priorizar el próximo mes.</li>
+              <li><strong>Qué recibe</strong> Un ranking con la rentabilidad esperada de cada café.</li>
+              <li><strong>Cómo leerlo</strong> Como grupo prioritario, no como un único ganador.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 · Pregunta de negocio -->
+    <section class="cita" id="pregunta" data-spy>
+      <div class="contenedor">
+        <div class="cita__marco reveal">
+          <p class="rotulo">05 · Pregunta de negocio</p>
+          <blockquote>¿Qué tipo de café tendrá la mayor rentabilidad esperada durante el próximo mes considerando el comportamiento histórico de ventas?</blockquote>
+          <p class="cita__nota">La respuesta incluye el ranking completo, el valor estimado por café, el café más rentable y las variables que explican la predicción.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 · Metodología -->
+    <section class="seccion" id="metodologia" data-spy>
+      <div class="contenedor marco">
+        <header class="cabeza reveal">
+          <p class="num">06</p>
+          <h2>Metodología utilizada</h2>
+          <p class="bajada">Ocho pasos, del dato crudo a la predicción. Abrí cada uno para ver el detalle y las cifras reales del proceso.</p>
+        </header>
+        <div class="cuerpo">
+          <div class="pasos reveal" id="metodo" role="list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 · Métricas del modelo -->
+    <section class="seccion seccion--tono" id="metricas" data-spy>
+      <div class="contenedor marco">
+        <header class="cabeza reveal">
+          <p class="num">07</p>
+          <h2>Métricas del modelo</h2>
+          <p class="bajada" id="metricasLead"></p>
+        </header>
+        <div class="cuerpo">
+          <div class="metricas" id="metricGrid"></div>
+
+          <div class="panel reveal">
+            <div class="panel__barra">
+              <div class="segmentado" id="vistaPrueba" role="group" aria-label="Vista del gráfico de prueba">
+                <button type="button" class="is-active" data-vista="dispersion">Real vs. predicho</button>
+                <button type="button" data-vista="totales">Total por fecha de corte</button>
+              </div>
+              <label class="selector" id="cafeFiltroWrap">Café
+                <select id="cafeFiltro"></select>
+              </label>
+            </div>
+            <div class="grafico" id="chartPrueba" role="img" aria-label="Comparación entre rentabilidad real y predicha en el período de prueba"></div>
+            <p class="nota" id="notaPrueba"></p>
+          </div>
+
+          <div class="tabla-marco reveal">
+            <table class="tabla tabla--num" id="tablaMetricas">
+              <caption>Período de prueba · el modelo base repite los 30 días anteriores</caption>
+              <thead><tr><th>Modelo</th><th>MAE</th><th>RMSE</th><th>R²</th><th>Spearman</th><th>Acierto top 3</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 · Comparación de modelos -->
+    <section class="seccion" id="modelos" data-spy>
+      <div class="contenedor marco">
+        <header class="cabeza reveal">
+          <p class="num">08</p>
+          <h2>Comparación de Modelos</h2>
+          <p class="bajada" id="modelosLead"></p>
+        </header>
+        <div class="cuerpo">
+          <div class="veredicto reveal" id="winner"></div>
+          <div class="fichas" id="modelCards"></div>
+
+          <div class="tabla-marco reveal">
+            <table class="tabla tabla--num" id="tablaModelos">
+              <caption>Tabla comparativa · período de prueba</caption>
+              <thead></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <div class="panel reveal">
+            <h3 class="panel__titulo">Comparación visual de métricas</h3>
+            <p class="panel__sub">Error absoluto medio, raíz del error cuadrático medio y R² en el período de prueba.</p>
+            <div class="minis">
+              <div><h4>MAE <span>menor es mejor</span></h4><div class="grafico" id="chartMAE" role="img" aria-label="Comparación de MAE entre modelos"></div></div>
+              <div><h4>RMSE <span>menor es mejor</span></h4><div class="grafico" id="chartRMSE" role="img" aria-label="Comparación de RMSE entre modelos"></div></div>
+              <div><h4>R² <span>mayor es mejor</span></h4><div class="grafico" id="chartR2" role="img" aria-label="Comparación de R² entre modelos"></div></div>
+            </div>
+          </div>
+
+          <div class="panel reveal">
+            <div class="panel__barra">
+              <div class="segmentado" id="vistaModelos" role="group" aria-label="Vista de la evidencia">
+                <button type="button" class="is-active" data-vm="relativo">Desempeño relativo</button>
+                <button type="button" data-vm="cv">Estabilidad por pliegue</button>
+              </div>
+            </div>
+            <div class="grafico" id="chartModelos" role="img" aria-label="Evidencia comparativa entre modelos"></div>
+            <p class="nota" id="notaModelos"></p>
+          </div>
+
+          <div class="panel panel--nota reveal">
+            <h3 class="panel__titulo">Conclusión de la comparación</h3>
+            <p id="conclusionModelos"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 · Importancia de variables -->
+    <section class="seccion seccion--tono" id="importancia" data-spy>
+      <div class="contenedor marco">
+        <header class="cabeza reveal">
+          <p class="num">09</p>
+          <h2>Importancia de variables</h2>
+          <p class="bajada" id="impLead"></p>
+        </header>
+        <div class="cuerpo">
+          <div class="panel reveal">
+            <div class="panel__barra">
+              <div class="segmentado" id="vistaImp" role="group" aria-label="Tipo de importancia">
+                <button type="button" class="is-active" data-imp="final">Modelo final</button>
+                <button type="button" data-imp="interna">Interna (evaluación)</button>
+                <button type="button" data-imp="permutacion">Permutación (prueba)</button>
+              </div>
+            </div>
+            <div class="grafico" id="chartImp" role="img" aria-label="Importancia de las variables del modelo"></div>
+            <p class="nota" id="impNota"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 · Café más rentable esperado -->
+    <section class="seccion" id="prediccion" data-spy>
+      <div class="contenedor marco">
+        <header class="cabeza reveal">
+          <p class="num">10</p>
+          <h2>Café más rentable esperado</h2>
+          <p class="bajada" id="predLead"></p>
+        </header>
+        <div class="cuerpo">
+          <div class="explicacion reveal" id="spotlight"></div>
+          <div class="panel reveal">
+            <h3 class="panel__titulo">La carta del próximo mes</h3>
+            <p class="panel__sub">Rentabilidad estimada para los próximos 30 días y participación en el total proyectado.</p>
+            <ol class="carta" id="carta"></ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 · Ranking -->
+    <section class="seccion seccion--tono" id="ranking" data-spy>
+      <div class="contenedor marco">
+        <header class="cabeza reveal">
+          <p class="num">11</p>
+          <h2>Ranking de rentabilidad</h2>
+          <p class="bajada">Rentabilidad estimada para los próximos 30 días, comparada con los últimos 30 días.</p>
+        </header>
+        <div class="cuerpo">
+          <div class="panel reveal">
+            <div class="panel__barra">
+              <div class="segmentado" id="vistaRanking" role="group" aria-label="Métrica del ranking">
+                <button type="button" class="is-active" data-metrica="comparacion">Estimada vs. últimos 30 días</button>
+                <button type="button" data-metrica="peso">Participación</button>
+                <button type="button" data-metrica="variacion">Variación</button>
+              </div>
+            </div>
+            <div class="grafico" id="chartRanking" role="img" aria-label="Ranking de rentabilidad esperada por café"></div>
+            <p class="nota" id="notaRanking"></p>
+          </div>
+
+          <div class="panel reveal">
+            <div class="panel__barra panel__barra--ajustada">
+              <div class="chips" id="filtroTabla" role="group" aria-label="Filtro de la tabla">
+                <button type="button" class="chip is-active" data-filtro="todos">Todos</button>
+                <button type="button" class="chip" data-filtro="top3">Top 3</button>
+                <button type="button" class="chip" data-filtro="suben">Suben</button>
+                <button type="button" class="chip" data-filtro="bajan">Bajan</button>
+              </div>
+              <label class="buscador"><span class="sr-only">Buscar café</span>
+                <input type="search" id="buscar" placeholder="Buscar café…" autocomplete="off">
+              </label>
+            </div>
+            <div class="tabla-scroll">
+              <table class="tabla tabla--ordenable" id="tablaRanking">
+                <caption class="sr-only">Ranking de rentabilidad esperada por café (se puede ordenar)</caption>
+                <thead></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <p class="nota" id="notaTabla"></p>
+          </div>
+
+          <div class="panel reveal">
+            <h3 class="panel__titulo">Evolución mensual del ingreso por café</h3>
+            <p class="panel__sub">Base de análisis (bloque A, pagos con tarjeta). Activá o desactivá cafés para compararlos.</p>
+            <div class="chips" id="chipsHistorico" role="group" aria-label="Cafés a mostrar"></div>
+            <div class="grafico" id="chartHistorico" role="img" aria-label="Ingreso mensual por café"></div>
+            <p class="nota" id="notaHistorico"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 · Hallazgos -->
+    <section class="seccion" id="hallazgos" data-spy>
+      <div class="contenedor marco">
+        <header class="cabeza reveal">
+          <p class="num">12</p>
+          <h2>Hallazgos principales</h2>
+          <p class="bajada">Lo que muestran los datos y el modelo.</p>
+        </header>
+        <div class="cuerpo">
+          <ol class="hallazgos" id="hallazgosGrid"></ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13 · Conclusiones -->
+    <section class="cierre" id="conclusiones" data-spy>
+      <div class="contenedor marco">
+        <header class="cabeza reveal">
+          <p class="num">13</p>
+          <h2>Conclusiones finales</h2>
+          <p class="bajada">Respuesta a la pregunta de negocio.</p>
+        </header>
+        <div class="cuerpo">
+          <div class="conclusion" id="conclusionesTexto"></div>
+          <div class="limites reveal">
+            <h3>Límites a tener presentes</h3>
+            <ul>
+              <li>La rentabilidad es un <strong>ingreso bruto</strong>: el dataset no incluye costos ni márgenes.</li>
+              <li>La base excluye efectivo y el segundo bloque, por los motivos de la Etapa 1.</li>
+              <li>Hay un único ciclo de 13 meses: no se puede aprender estacionalidad anual.</li>
+              <li>Siguiente paso: corregir la captura (Capa 1) y sumar costos para estimar margen real.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor pie__fila">
+      <p><strong>Café Insights</strong> · Etapa 2 · Proyecto de Ciencia de Datos para una cafetería</p>
+      <p id="footerMeta"></p>
+    </div>
+  </footer>
+
+  <div class="tooltip" id="tooltip" role="status" aria-hidden="true"></div>
+  <noscript><p class="aviso">Esta aplicación necesita JavaScript para mostrar los resultados del modelo.</p></noscript>
+
+  <script src="script.js"></script>
+</body>
+</html>

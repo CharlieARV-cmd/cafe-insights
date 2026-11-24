@@ -1,0 +1,1156 @@
+{
+ "meta": {
+  "fecha_ultimo_dato": "2025-03-23",
+  "inicio_prediccion": "2025-03-24",
+  "fin_prediccion": "2025-04-22",
+  "horizonte_dias": 30,
+  "filas_archivo": 3898,
+  "filas_base": 3547,
+  "duplicados_base": 13,
+  "combinaciones": 36,
+  "periodo": [
+   "2024-03-01",
+   "2025-03-23"
+  ],
+  "n_cafes": 8,
+  "n_fechas_corte": 47,
+  "n_entrenamiento": 264,
+  "n_prueba": 80
+ },
+ "parametros": {
+  "max_depth": 4,
+  "min_samples_leaf": 1,
+  "min_samples_split": 2,
+  "n_estimators": 100
+ },
+ "mae_validacion_cruzada": 427.89,
+ "metricas": {
+  "rf": {
+   "MAE": 475.3571,
+   "RMSE": 713.2879,
+   "R²": 0.3036
+  },
+  "base": {
+   "MAE": 492.4153,
+   "RMSE": 735.2456,
+   "R²": 0.26
+  },
+  "entrenamiento": {
+   "MAE": 218.9492,
+   "RMSE": 292.2878,
+   "R²": 0.8835
+  },
+  "ranking_rf": {
+   "Spearman": 0.7667,
+   "Top 1": 0.3,
+   "Top 3": 0.7
+  },
+  "ranking_base": {
+   "Spearman": 0.6979,
+   "Top 1": 0.2,
+   "Top 3": 0.7
+  },
+  "mejora_mae": 0.0346
+ },
+ "importancia": {
+  "final": [
+   {
+    "variable": "participacion_30d",
+    "valor": 0.3757
+   },
+   {
+    "variable": "ingresos_30d",
+    "valor": 0.3401
+   },
+   {
+    "variable": "ingresos_7d",
+    "valor": 0.0654
+   },
+   {
+    "variable": "compras_14d",
+    "valor": 0.0638
+   },
+   {
+    "variable": "cafe",
+    "valor": 0.0486
+   },
+   {
+    "variable": "pct_noche_30d",
+    "valor": 0.0279
+   },
+   {
+    "variable": "compras_7d",
+    "valor": 0.0199
+   },
+   {
+    "variable": "precio_actual",
+    "valor": 0.0195
+   },
+   {
+    "variable": "tendencia",
+    "valor": 0.017
+   },
+   {
+    "variable": "compras_30d",
+    "valor": 0.0115
+   },
+   {
+    "variable": "pct_finde_30d",
+    "valor": 0.0106
+   }
+  ],
+  "interna": [
+   {
+    "variable": "participacion_30d",
+    "valor": 0.4893
+   },
+   {
+    "variable": "ingresos_30d",
+    "valor": 0.299
+   },
+   {
+    "variable": "ingresos_7d",
+    "valor": 0.0517
+   },
+   {
+    "variable": "precio_actual",
+    "valor": 0.0364
+   },
+   {
+    "variable": "pct_noche_30d",
+    "valor": 0.0303
+   },
+   {
+    "variable": "cafe",
+    "valor": 0.0264
+   },
+   {
+    "variable": "compras_14d",
+    "valor": 0.0254
+   },
+   {
+    "variable": "compras_30d",
+    "valor": 0.0142
+   },
+   {
+    "variable": "pct_finde_30d",
+    "valor": 0.0122
+   },
+   {
+    "variable": "tendencia",
+    "valor": 0.0084
+   },
+   {
+    "variable": "compras_7d",
+    "valor": 0.0067
+   }
+  ],
+  "permutacion": [
+   {
+    "variable": "participacion_30d",
+    "valor": 114.7
+   },
+   {
+    "variable": "ingresos_30d",
+    "valor": 34.26
+   },
+   {
+    "variable": "cafe",
+    "valor": 24.83
+   },
+   {
+    "variable": "precio_actual",
+    "valor": 23.57
+   },
+   {
+    "variable": "ingresos_7d",
+    "valor": 22.38
+   },
+   {
+    "variable": "compras_14d",
+    "valor": 5.08
+   },
+   {
+    "variable": "pct_finde_30d",
+    "valor": 2.29
+   },
+   {
+    "variable": "compras_30d",
+    "valor": 0.68
+   },
+   {
+    "variable": "compras_7d",
+    "valor": 0.02
+   },
+   {
+    "variable": "tendencia",
+    "valor": -0.91
+   },
+   {
+    "variable": "pct_noche_30d",
+    "valor": -6.42
+   }
+  ]
+ },
+ "caracteristicas_hoy": [
+  {
+   "cafe": "Americano",
+   "compras_7d": 35.0,
+   "compras_14d": 64.0,
+   "compras_30d": 130.0,
+   "ingresos_7d": 908.6,
+   "ingresos_30d": 3374.7999999999997,
+   "precio_actual": 25.96,
+   "tendencia": 1.153846153846154,
+   "participacion_30d": 0.31100478468899523,
+   "pct_noche_30d": 0.05384615384615385,
+   "pct_finde_30d": 0.15384615384615385
+  },
+  {
+   "cafe": "Americano with Milk",
+   "compras_7d": 17.0,
+   "compras_14d": 31.0,
+   "compras_30d": 73.0,
+   "ingresos_7d": 524.62,
+   "ingresos_30d": 2252.779999999999,
+   "precio_actual": 30.86,
+   "tendencia": 0.9980430528375733,
+   "participacion_30d": 0.17464114832535885,
+   "pct_noche_30d": 0.1095890410958904,
+   "pct_finde_30d": 0.3013698630136986
+  },
+  {
+   "cafe": "Cappuccino",
+   "compras_7d": 13.0,
+   "compras_14d": 26.0,
+   "compras_30d": 54.0,
+   "ingresos_7d": 464.88,
+   "ingresos_30d": 1931.0399999999997,
+   "precio_actual": 35.76,
+   "tendencia": 1.0317460317460319,
+   "participacion_30d": 0.1291866028708134,
+   "pct_noche_30d": 0.18518518518518517,
+   "pct_finde_30d": 0.2037037037037037
+  },
+  {
+   "cafe": "Cocoa",
+   "compras_7d": 11.0,
+   "compras_14d": 19.0,
+   "compras_30d": 43.0,
+   "ingresos_7d": 393.35999999999996,
+   "ingresos_30d": 1537.6799999999998,
+   "precio_actual": 35.76,
+   "tendencia": 1.0963455149501662,
+   "participacion_30d": 0.10287081339712918,
+   "pct_noche_30d": 0.32558139534883723,
+   "pct_finde_30d": 0.13953488372093023
+  },
+  {
+   "cafe": "Cortado",
+   "compras_7d": 2.0,
+   "compras_14d": 2.0,
+   "compras_30d": 3.0,
+   "ingresos_7d": 51.92,
+   "ingresos_30d": 77.88,
+   "precio_actual": 25.96,
+   "tendencia": 2.857142857142857,
+   "participacion_30d": 0.007177033492822967,
+   "pct_noche_30d": 0.3333333333333333,
+   "pct_finde_30d": 0.0
+  },
+  {
+   "cafe": "Espresso",
+   "compras_7d": 5.0,
+   "compras_14d": 7.0,
+   "compras_30d": 14.0,
+   "ingresos_7d": 105.3,
+   "ingresos_30d": 294.84,
+   "precio_actual": 21.06,
+   "tendencia": 1.530612244897959,
+   "participacion_30d": 0.03349282296650718,
+   "pct_noche_30d": 0.14285714285714285,
+   "pct_finde_30d": 0.21428571428571427
+  },
+  {
+   "cafe": "Hot Chocolate",
+   "compras_7d": 6.0,
+   "compras_14d": 13.0,
+   "compras_30d": 28.0,
+   "ingresos_7d": 214.55999999999997,
+   "ingresos_30d": 1001.2799999999999,
+   "precio_actual": 35.76,
+   "tendencia": 0.9183673469387755,
+   "participacion_30d": 0.06698564593301436,
+   "pct_noche_30d": 0.07142857142857142,
+   "pct_finde_30d": 0.10714285714285714
+  },
+  {
+   "cafe": "Latte",
+   "compras_7d": 20.0,
+   "compras_14d": 41.0,
+   "compras_30d": 73.0,
+   "ingresos_7d": 715.2,
+   "ingresos_30d": 2610.4800000000005,
+   "precio_actual": 35.76,
+   "tendencia": 1.1741682974559686,
+   "participacion_30d": 0.17464114832535885,
+   "pct_noche_30d": 0.2191780821917808,
+   "pct_finde_30d": 0.0821917808219178
+  }
+ ],
+ "historico": {
+  "meses": [
+   "2024-03",
+   "2024-04",
+   "2024-05",
+   "2024-06",
+   "2024-07",
+   "2024-08",
+   "2024-09",
+   "2024-10",
+   "2024-11",
+   "2024-12",
+   "2025-01",
+   "2025-02",
+   "2025-03"
+  ],
+  "series": {
+   "Americano": [
+    924.8,
+    941.9,
+    1116.8,
+    390.9,
+    858.1,
+    851.7,
+    739.6,
+    1142.2,
+    649.0,
+    700.9,
+    649.0,
+    3037.3,
+    2647.9
+   ],
+   "Americano with Milk": [
+    1014.0,
+    1267.7,
+    1772.3,
+    2166.1,
+    1863.8,
+    2010.2,
+    2930.1,
+    2530.5,
+    1604.7,
+    1759.0,
+    1604.7,
+    2623.1,
+    1604.7
+   ],
+   "Cappuccino": [
+    580.5,
+    1381.4,
+    1961.4,
+    1735.1,
+    1079.6,
+    1115.9,
+    1360.3,
+    1573.4,
+    929.8,
+    1358.9,
+    965.5,
+    1859.5,
+    1537.7
+   ],
+   "Cocoa": [
+    232.2,
+    153.8,
+    301.8,
+    150.9,
+    300.3,
+    361.0,
+    298.3,
+    1144.3,
+    1251.6,
+    751.0,
+    500.6,
+    2002.6,
+    1072.8
+   ],
+   "Cortado": [
+    809.2,
+    458.5,
+    474.6,
+    530.5,
+    322.3,
+    920.8,
+    961.5,
+    882.6,
+    337.5,
+    804.8,
+    571.1,
+    259.6,
+    51.9
+   ],
+   "Espresso": [
+    216.0,
+    96.0,
+    161.1,
+    230.2,
+    273.3,
+    253.7,
+    217.4,
+    252.7,
+    63.2,
+    252.7,
+    105.3,
+    358.0,
+    210.6
+   ],
+   "Hot Chocolate": [
+    774.0,
+    386.0,
+    490.4,
+    528.1,
+    361.0,
+    196.9,
+    366.9,
+    2074.1,
+    1323.1,
+    929.8,
+    536.4,
+    1144.3,
+    822.5
+   ],
+   "Latte": [
+    1354.5,
+    1034.1,
+    1886.0,
+    1886.0,
+    1857.5,
+    1903.6,
+    3114.5,
+    4291.2,
+    2431.7,
+    1680.7,
+    1466.2,
+    1931.0,
+    2038.3
+   ]
+  }
+ },
+ "prueba": {
+  "puntos": [
+   {
+    "cafe": "Americano",
+    "fecha": "2024-12-14",
+    "real": 467.3,
+    "rf": 813.0,
+    "base": 675.0
+   },
+   {
+    "cafe": "Americano with Milk",
+    "fecha": "2024-12-14",
+    "real": 1543.0,
+    "rf": 2263.5,
+    "base": 1759.0
+   },
+   {
+    "cafe": "Cappuccino",
+    "fecha": "2024-12-14",
+    "real": 1215.8,
+    "rf": 1228.0,
+    "base": 858.2
+   },
+   {
+    "cafe": "Cocoa",
+    "fecha": "2024-12-14",
+    "real": 536.4,
+    "rf": 1203.9,
+    "base": 965.5
+   },
+   {
+    "cafe": "Cortado",
+    "fecha": "2024-12-14",
+    "real": 856.7,
+    "rf": 551.8,
+    "base": 389.4
+   },
+   {
+    "cafe": "Espresso",
+    "fecha": "2024-12-14",
+    "real": 189.5,
+    "rf": 337.4,
+    "base": 126.4
+   },
+   {
+    "cafe": "Hot Chocolate",
+    "fecha": "2024-12-14",
+    "real": 751.0,
+    "rf": 891.6,
+    "base": 786.7
+   },
+   {
+    "cafe": "Latte",
+    "fecha": "2024-12-14",
+    "real": 1501.9,
+    "rf": 2305.0,
+    "base": 2002.6
+   },
+   {
+    "cafe": "Americano",
+    "fecha": "2024-12-21",
+    "real": 467.3,
+    "rf": 603.8,
+    "base": 649.0
+   },
+   {
+    "cafe": "Americano with Milk",
+    "fecha": "2024-12-21",
+    "real": 1604.7,
+    "rf": 2027.4,
+    "base": 1543.0
+   },
+   {
+    "cafe": "Cappuccino",
+    "fecha": "2024-12-21",
+    "real": 1144.3,
+    "rf": 1252.9,
+    "base": 1072.8
+   },
+   {
+    "cafe": "Cocoa",
+    "fecha": "2024-12-21",
+    "real": 464.9,
+    "rf": 1179.2,
+    "base": 894.0
+   },
+   {
+    "cafe": "Cortado",
+    "fecha": "2024-12-21",
+    "real": 778.8,
+    "rf": 660.9,
+    "base": 493.2
+   },
+   {
+    "cafe": "Espresso",
+    "fecha": "2024-12-21",
+    "real": 147.4,
+    "rf": 268.1,
+    "base": 147.4
+   },
+   {
+    "cafe": "Hot Chocolate",
+    "fecha": "2024-12-21",
+    "real": 715.2,
+    "rf": 1187.8,
+    "base": 822.5
+   },
+   {
+    "cafe": "Latte",
+    "fecha": "2024-12-21",
+    "real": 1609.2,
+    "rf": 1918.7,
+    "base": 1716.5
+   },
+   {
+    "cafe": "Americano",
+    "fecha": "2024-12-28",
+    "real": 519.2,
+    "rf": 607.8,
+    "base": 649.0
+   },
+   {
+    "cafe": "Americano with Milk",
+    "fecha": "2024-12-28",
+    "real": 1512.1,
+    "rf": 2115.7,
+    "base": 1697.3
+   },
+   {
+    "cafe": "Cappuccino",
+    "fecha": "2024-12-28",
+    "real": 1001.3,
+    "rf": 1264.8,
+    "base": 1180.1
+   },
+   {
+    "cafe": "Cocoa",
+    "fecha": "2024-12-28",
+    "real": 464.9,
+    "rf": 1081.7,
+    "base": 858.2
+   },
+   {
+    "cafe": "Cortado",
+    "fecha": "2024-12-28",
+    "real": 649.0,
+    "rf": 771.9,
+    "base": 649.0
+   },
+   {
+    "cafe": "Espresso",
+    "fecha": "2024-12-28",
+    "real": 147.4,
+    "rf": 269.5,
+    "base": 189.5
+   },
+   {
+    "cafe": "Hot Chocolate",
+    "fecha": "2024-12-28",
+    "real": 572.2,
+    "rf": 1177.2,
+    "base": 858.2
+   },
+   {
+    "cafe": "Latte",
+    "fecha": "2024-12-28",
+    "real": 1501.9,
+    "rf": 1717.0,
+    "base": 1573.4
+   },
+   {
+    "cafe": "Americano",
+    "fecha": "2025-01-04",
+    "real": 649.0,
+    "rf": 766.7,
+    "base": 675.0
+   },
+   {
+    "cafe": "Americano with Milk",
+    "fecha": "2025-01-04",
+    "real": 1851.6,
+    "rf": 1651.2,
+    "base": 1296.1
+   },
+   {
+    "cafe": "Cappuccino",
+    "fecha": "2025-01-04",
+    "real": 1108.6,
+    "rf": 1318.1,
+    "base": 1323.1
+   },
+   {
+    "cafe": "Cocoa",
+    "fecha": "2025-01-04",
+    "real": 464.9,
+    "rf": 784.5,
+    "base": 715.2
+   },
+   {
+    "cafe": "Cortado",
+    "fecha": "2025-01-04",
+    "real": 493.2,
+    "rf": 836.3,
+    "base": 856.7
+   },
+   {
+    "cafe": "Espresso",
+    "fecha": "2025-01-04",
+    "real": 126.4,
+    "rf": 253.3,
+    "base": 231.7
+   },
+   {
+    "cafe": "Hot Chocolate",
+    "fecha": "2025-01-04",
+    "real": 572.2,
+    "rf": 1134.5,
+    "base": 858.2
+   },
+   {
+    "cafe": "Latte",
+    "fecha": "2025-01-04",
+    "real": 1716.5,
+    "rf": 1384.8,
+    "base": 1323.1
+   },
+   {
+    "cafe": "Americano",
+    "fecha": "2025-01-11",
+    "real": 1220.1,
+    "rf": 626.7,
+    "base": 623.0
+   },
+   {
+    "cafe": "Americano with Milk",
+    "fecha": "2025-01-11",
+    "real": 2036.8,
+    "rf": 1670.4,
+    "base": 1450.4
+   },
+   {
+    "cafe": "Cappuccino",
+    "fecha": "2025-01-11",
+    "real": 1251.6,
+    "rf": 1243.7,
+    "base": 1287.4
+   },
+   {
+    "cafe": "Cocoa",
+    "fecha": "2025-01-11",
+    "real": 1215.8,
+    "rf": 475.4,
+    "base": 643.7
+   },
+   {
+    "cafe": "Cortado",
+    "fecha": "2025-01-11",
+    "real": 571.1,
+    "rf": 711.4,
+    "base": 830.7
+   },
+   {
+    "cafe": "Espresso",
+    "fecha": "2025-01-11",
+    "real": 168.5,
+    "rf": 242.8,
+    "base": 168.5
+   },
+   {
+    "cafe": "Hot Chocolate",
+    "fecha": "2025-01-11",
+    "real": 715.2,
+    "rf": 683.4,
+    "base": 786.7
+   },
+   {
+    "cafe": "Latte",
+    "fecha": "2025-01-11",
+    "real": 1716.5,
+    "rf": 1704.6,
+    "base": 1466.2
+   },
+   {
+    "cafe": "Americano",
+    "fecha": "2025-01-18",
+    "real": 1921.0,
+    "rf": 460.1,
+    "base": 467.3
+   },
+   {
+    "cafe": "Americano with Milk",
+    "fecha": "2025-01-18",
+    "real": 2314.5,
+    "rf": 1919.5,
+    "base": 1635.6
+   },
+   {
+    "cafe": "Cappuccino",
+    "fecha": "2025-01-18",
+    "real": 1430.4,
+    "rf": 1256.6,
+    "base": 1215.8
+   },
+   {
+    "cafe": "Cocoa",
+    "fecha": "2025-01-18",
+    "real": 1323.1,
+    "rf": 484.8,
+    "base": 500.6
+   },
+   {
+    "cafe": "Cortado",
+    "fecha": "2025-01-18",
+    "real": 467.3,
+    "rf": 673.4,
+    "base": 908.6
+   },
+   {
+    "cafe": "Espresso",
+    "fecha": "2025-01-18",
+    "real": 273.8,
+    "rf": 253.1,
+    "base": 168.5
+   },
+   {
+    "cafe": "Hot Chocolate",
+    "fecha": "2025-01-18",
+    "real": 894.0,
+    "rf": 826.5,
+    "base": 751.0
+   },
+   {
+    "cafe": "Latte",
+    "fecha": "2025-01-18",
+    "real": 1537.7,
+    "rf": 1875.7,
+    "base": 1716.5
+   },
+   {
+    "cafe": "Americano",
+    "fecha": "2025-01-25",
+    "real": 2725.8,
+    "rf": 613.0,
+    "base": 519.2
+   },
+   {
+    "cafe": "Americano with Milk",
+    "fecha": "2025-01-25",
+    "real": 2715.7,
+    "rf": 2202.0,
+    "base": 1512.1
+   },
+   {
+    "cafe": "Cappuccino",
+    "fecha": "2025-01-25",
+    "real": 1716.5,
+    "rf": 1257.7,
+    "base": 1037.0
+   },
+   {
+    "cafe": "Cocoa",
+    "fecha": "2025-01-25",
+    "real": 1823.8,
+    "rf": 662.5,
+    "base": 500.6
+   },
+   {
+    "cafe": "Cortado",
+    "fecha": "2025-01-25",
+    "real": 363.4,
+    "rf": 590.3,
+    "base": 700.9
+   },
+   {
+    "cafe": "Espresso",
+    "fecha": "2025-01-25",
+    "real": 337.0,
+    "rf": 250.4,
+    "base": 126.4
+   },
+   {
+    "cafe": "Hot Chocolate",
+    "fecha": "2025-01-25",
+    "real": 1108.6,
+    "rf": 582.1,
+    "base": 607.9
+   },
+   {
+    "cafe": "Latte",
+    "fecha": "2025-01-25",
+    "real": 1788.0,
+    "rf": 1860.9,
+    "base": 1501.9
+   },
+   {
+    "cafe": "Americano",
+    "fecha": "2025-02-01",
+    "real": 3296.9,
+    "rf": 776.5,
+    "base": 623.0
+   },
+   {
+    "cafe": "Americano with Milk",
+    "fecha": "2025-02-01",
+    "real": 2623.1,
+    "rf": 2267.3,
+    "base": 1697.3
+   },
+   {
+    "cafe": "Cappuccino",
+    "fecha": "2025-02-01",
+    "real": 1966.8,
+    "rf": 1277.2,
+    "base": 1037.0
+   },
+   {
+    "cafe": "Cocoa",
+    "fecha": "2025-02-01",
+    "real": 2109.8,
+    "rf": 462.7,
+    "base": 429.1
+   },
+   {
+    "cafe": "Cortado",
+    "fecha": "2025-02-01",
+    "real": 207.7,
+    "rf": 679.2,
+    "base": 571.1
+   },
+   {
+    "cafe": "Espresso",
+    "fecha": "2025-02-01",
+    "real": 358.0,
+    "rf": 253.4,
+    "base": 105.3
+   },
+   {
+    "cafe": "Hot Chocolate",
+    "fecha": "2025-02-01",
+    "real": 1323.1,
+    "rf": 438.4,
+    "base": 500.6
+   },
+   {
+    "cafe": "Latte",
+    "fecha": "2025-02-01",
+    "real": 2145.6,
+    "rf": 1863.9,
+    "base": 1501.9
+   },
+   {
+    "cafe": "Americano",
+    "fecha": "2025-02-08",
+    "real": 3556.5,
+    "rf": 901.4,
+    "base": 1038.4
+   },
+   {
+    "cafe": "Americano with Milk",
+    "fecha": "2025-02-08",
+    "real": 2530.5,
+    "rf": 2454.3,
+    "base": 2098.5
+   },
+   {
+    "cafe": "Cappuccino",
+    "fecha": "2025-02-08",
+    "real": 1931.0,
+    "rf": 1309.5,
+    "base": 1287.4
+   },
+   {
+    "cafe": "Cocoa",
+    "fecha": "2025-02-08",
+    "real": 1788.0,
+    "rf": 1247.5,
+    "base": 965.5
+   },
+   {
+    "cafe": "Cortado",
+    "fecha": "2025-02-08",
+    "real": 51.9,
+    "rf": 587.7,
+    "base": 597.1
+   },
+   {
+    "cafe": "Espresso",
+    "fecha": "2025-02-08",
+    "real": 337.0,
+    "rf": 319.9,
+    "base": 168.5
+   },
+   {
+    "cafe": "Hot Chocolate",
+    "fecha": "2025-02-08",
+    "real": 1394.6,
+    "rf": 769.1,
+    "base": 715.2
+   },
+   {
+    "cafe": "Latte",
+    "fecha": "2025-02-08",
+    "real": 2181.4,
+    "rf": 1677.3,
+    "base": 1716.5
+   },
+   {
+    "cafe": "Americano",
+    "fecha": "2025-02-15",
+    "real": 3660.4,
+    "rf": 1774.7,
+    "base": 1661.4
+   },
+   {
+    "cafe": "Americano with Milk",
+    "fecha": "2025-02-15",
+    "real": 2283.6,
+    "rf": 2189.8,
+    "base": 2160.2
+   },
+   {
+    "cafe": "Cappuccino",
+    "fecha": "2025-02-15",
+    "real": 2002.6,
+    "rf": 1234.5,
+    "base": 1394.6
+   },
+   {
+    "cafe": "Cocoa",
+    "fecha": "2025-02-15",
+    "real": 1645.0,
+    "rf": 1357.6,
+    "base": 1430.4
+   },
+   {
+    "cafe": "Cortado",
+    "fecha": "2025-02-15",
+    "real": 26.0,
+    "rf": 446.0,
+    "base": 467.3
+   },
+   {
+    "cafe": "Espresso",
+    "fecha": "2025-02-15",
+    "real": 294.8,
+    "rf": 301.2,
+    "base": 231.7
+   },
+   {
+    "cafe": "Hot Chocolate",
+    "fecha": "2025-02-15",
+    "real": 1180.1,
+    "rf": 1178.9,
+    "base": 894.0
+   },
+   {
+    "cafe": "Latte",
+    "fecha": "2025-02-15",
+    "real": 2395.9,
+    "rf": 1381.3,
+    "base": 1466.2
+   }
+  ],
+  "totales": {
+   "fechas": [
+    "2024-12-14",
+    "2024-12-21",
+    "2024-12-28",
+    "2025-01-04",
+    "2025-01-11",
+    "2025-01-18",
+    "2025-01-25",
+    "2025-02-01",
+    "2025-02-08",
+    "2025-02-15"
+   ],
+   "real": [
+    7061.6,
+    6931.8,
+    6368.0,
+    6982.3,
+    8895.6,
+    10161.8,
+    12578.7,
+    14031.1,
+    13771.0,
+    13488.3
+   ],
+   "rf": [
+    9594.2,
+    9098.9,
+    9005.6,
+    8129.4,
+    7358.4,
+    7749.6,
+    8018.9,
+    8018.6,
+    9266.8,
+    9864.0
+   ],
+   "base": [
+    7562.8,
+    7338.4,
+    7654.8,
+    7279.1,
+    7256.6,
+    7363.9,
+    6506.1,
+    6465.5,
+    8587.0,
+    9705.8
+   ]
+  }
+ },
+ "comparacion": {
+  "modelos": [
+   "Random Forest",
+   "Linear Regression"
+  ],
+  "metricas": {
+   "Random Forest": {
+    "MAE": 475.36,
+    "RMSE": 713.29,
+    "R2": 0.3036,
+    "t_entrenamiento_s": 0.1648,
+    "t_prediccion_ms": 39.218,
+    "Spearman": 0.7667,
+    "Top 1": 0.3,
+    "Top 3": 0.7
+   },
+   "Linear Regression": {
+    "MAE": 446.28,
+    "RMSE": 710.12,
+    "R2": 0.3097,
+    "t_entrenamiento_s": 0.0018,
+    "t_prediccion_ms": 0.977,
+    "Spearman": 0.6881,
+    "Top 1": 0.1,
+    "Top 3": 0.6
+   }
+  },
+  "mejores": {
+   "MAE": "Linear Regression",
+   "RMSE": "Linear Regression",
+   "R²": "Linear Regression",
+   "Entrenamiento (s)": "Linear Regression",
+   "Predicción (ms)": "Linear Regression"
+  },
+  "cv": {
+   "pliegues": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "filas_entrenamiento": [
+    16,
+    68,
+    120,
+    172
+   ],
+   "Random Forest": [
+    456.5,
+    318.7,
+    481.6,
+    454.7
+   ],
+   "Linear Regression": [
+    335.2,
+    1798.7,
+    587.7,
+    631.2
+   ]
+  },
+  "votos": [
+   {
+    "criterio": "Error en prueba",
+    "ganador": "Linear Regression"
+   },
+   {
+    "criterio": "Robustez temporal",
+    "ganador": "Random Forest"
+   },
+   {
+    "criterio": "Orden de los cafés",
+    "ganador": "Random Forest"
+   }
+  ],
+  "bootstrap": {
+   "diferencia_mae": 29.08,
+   "ic95": [
+    -12.65,
+    71.0
+   ]
+  },
+  "mas_preciso": "Linear Regression",
+  "menor_error": "Linear Regression",
+  "recomendado": "Random Forest",
+  "motivo": "Random Forest gana 2 de 3 criterios (robustez temporal, orden de los cafés). Es más estable entre períodos y ordena mejor los cafés, que es lo que exige la pregunta de negocio; su costo de cómputo (39,2 ms por predicción) es irrelevante para ocho cafés al mes.",
+  "conclusion": "**Linear Regression** predice marginalmente mejor en el período de prueba (MAE 446 frente a 475), pero la diferencia no es estadísticamente distinguible (el IC 95 % de la diferencia de MAE, [-13; 71], incluye el cero). En robustez temporal gana Random Forest (3 de 4 pliegues; MAE medio de validación 428 frente a 838) y en el orden de los cafés gana Random Forest (Spearman 0,77 frente a 0,69). La cafetería utilizará **Random Forest**: responde mejor a la pregunta de negocio, que exige ordenar los cafés de forma confiable, y su mayor tiempo de cómputo es irrelevante a esta escala. La regresión lineal queda como modelo de referencia."
+ },
+ "hallazgos": [
+  "**Americano** lidera la rentabilidad esperada: 2.810 unidades monetarias (25,3 % del total proyectado).",
+  "Los tres primeros cafés (Americano, Latte, Americano with Milk) concentran el 61 % de la rentabilidad proyectada.",
+  "El Random Forest reduce el MAE en 3,5 % frente a repetir el mes anterior (R² 0,30 frente a 0,26).",
+  "El café realmente más rentable quedó entre los 3 primeros del modelo en el 70 % de las fechas de prueba (modelo base: 70 %).",
+  "Variables más influyentes del modelo final: participacion_30d (38 %), ingresos_30d (34 %), ingresos_7d (7 %); el modelo se apoya sobre todo en cuánto pesó cada café en las compras del último mes.",
+  "La ventaja del primer café sobre el segundo (471) equivale a 1,0 veces el error típico (475) y los rangos entre árboles se superponen.",
+  "El total proyectado (11.100) es 15 % menor que el de los últimos 30 días: el ranking es más confiable que el valor absoluto.",
+  "Frente a una regresión lineal, Random Forest gana 2 de 3 criterios; en el error de prueba la diferencia con Linear Regression es mínima y no es estadísticamente distinguible."
+ ],
+ "conclusiones": [
+  "El café con mayor rentabilidad esperada para los próximos 30 días (del 24/03/2025 al 22/04/2025) es **Americano**, con 2.810 unidades monetarias estimadas (25,3 % del total proyectado), seguido de Latte (2.340) y Americano with Milk (1.569). El encargado de compras debería priorizar el abastecimiento de Americano y, en general, de estos tres cafés, que concentran el 61 % de la rentabilidad proyectada. Las variables que más pesan en el modelo son `participacion_30d`, `ingresos_30d`.",
+  "La evidencia del modelo es moderada: en prueba el Random Forest redujo el MAE en 3,5 % frente a repetir el mes anterior (475 frente a 492; R² de 0,30) y ordenó los cafés con una correlación de Spearman de 0,77. La ventaja de Americano sobre Latte (471) equivale a 1,0 veces el error típico y los rangos entre árboles de ambos se superponen, por lo que se lo considera el líder más probable dentro de un grupo prioritario y no un ganador seguro; además, el total proyectado (11.100) es 15 % menor que el de los últimos 30 días, así que el orden de los cafés es más confiable que el valor absoluto. La rentabilidad es un ingreso bruto (el dataset no tiene costos) calculado solo con pagos con tarjeta del bloque A; coherente con la Etapa 1, corregir la captura de datos sigue siendo condición para usar estas predicciones con mayor confianza.",
+  "**Linear Regression** predice marginalmente mejor en el período de prueba (MAE 446 frente a 475), pero la diferencia no es estadísticamente distinguible (el IC 95 % de la diferencia de MAE, [-13; 71], incluye el cero). En robustez temporal gana Random Forest (3 de 4 pliegues; MAE medio de validación 428 frente a 838) y en el orden de los cafés gana Random Forest (Spearman 0,77 frente a 0,69). La cafetería utilizará **Random Forest**: responde mejor a la pregunta de negocio, que exige ordenar los cafés de forma confiable, y su mayor tiempo de cómputo es irrelevante a esta escala. La regresión lineal queda como modelo de referencia."
+ ]
+}
